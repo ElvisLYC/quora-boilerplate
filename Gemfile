@@ -6,7 +6,8 @@ gem 'sinatra-contrib'
 
 gem 'byebug'
 
-gem 'bcrypt'
+# gem 'bcrypt'
+gem 'bcrypt', '~> 3.1.7'
 
 gem 'pg', "~> 0.18"
 
@@ -16,9 +17,9 @@ gem 'rake'
 
 gem 'thin'
 
-# group :development do
-#   gem "shotgun"
-# end
+group :development do
+  gem "shotgun"
+end
 
 group :production do
   # Heroku
