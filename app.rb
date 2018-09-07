@@ -11,7 +11,7 @@ get '/form/signup' do
 end
 
 post '/signup' do
-
+  p params
   user = User.new(email: params[:user][:email], password: params[:user][:password])    #include user and password
   user.save                      # save user
   #redirect user to login page
@@ -46,6 +46,7 @@ end
 
 
 post '/login' do
+  p params
   user = User.find_by(email: params[:user][:email])
   if user && user.authenticate(params[:user][:password])
     session[:user_id] = user.id #check
@@ -65,6 +66,7 @@ post '/question' do
 end
 
 post '/logout' do
+  p params
   session[:user_id] = nil
   redirect 'form/login'
   # kill a session when a user chooses to logout, for example, assign nil to a session
@@ -72,6 +74,8 @@ post '/logout' do
 end
 
 get '/users/:id' do
+  p params
+  # params = {id:10}
   @user = User.find_by(id: params[:id])
 
   #Story 3 - Profile Page
