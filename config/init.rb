@@ -24,6 +24,9 @@ set :public_folder, File.join(APP_ROOT, "public")
 set :views, File.join(APP_ROOT, "views")
 set :erb, layout: :'application'
 
+enable :sessions # <----session enable
+set :session_secret, "secret" #<------require when using shotgun
+
 # Load files
 Dir[APP_ROOT.join('controllers', '*.rb')].each { |file| require file }
 Dir[APP_ROOT.join('helpers', '*.rb')].each { |file| require file }

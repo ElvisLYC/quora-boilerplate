@@ -1,18 +1,44 @@
 <html>
   <head>
     <title>Quora Clone</title>
-    
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link rel="stylesheet" type="text/css" href="css/application.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/application.css">
   </head>
   <body>
 
+    <form method="get" action="/">
+        <input type=submit value="Home">
+    </form>
+    <% if logged_in? %>
+      <p>Welcome <%= current_user.email %></p>
+      <form method="get" action="/logout">
+          <input type=submit value="Log Out">
+      </form>
+    <% else %>
+      <form method="get" action="/form/login">
+          <input type=submit value="Log In">
+      </form>
+
+      <p>If you yet to have an account?</p>
+      <form method="get" action="/form/signup">
+          <input type=submit value="Sign Up Now!">
+      </form>
+    <% end %>
+<!--
+    <% if logged_in? %>
+      <p>Welcome <%= current_user.email %></p>
+      <a href="/logout">Log out</a>
+      <a href="/helpers/session/<%= current_user.id %>">My profile</a>
+    <% else %>
+      <a href="/form/signup">Sign up</a>
+      <a href="/form/login">Log in</a>
+    <% end %> -->
+
     <%= yield %>
 
-  </body>
+
 </html>
-
-

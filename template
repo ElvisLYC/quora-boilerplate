@@ -1,0 +1,11 @@
+<!-- <a href="/">Home</a> -->
+
+<!-- #<% if logged_in? %>
+
+  <p>Welcome <%= current_user.email %></p>
+  <a href="/logout">Logout</a>
+  <a href="/users/<%= current_user.id %>">My profile</a>
+  <% else %>
+  <a href="/signup">Sign up</a>
+  <a href="/login">Log in</a> -->
+<!-- <% end %> -->
