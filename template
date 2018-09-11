@@ -1,11 +1,14 @@
-<!-- <a href="/">Home</a> -->
+question
 
-<!-- #<% if logged_in? %>
+1) need new table
+column = user id | user name | Question | answer (later)
+if user is logged in > then can ask question
+else
+they will see " please login / signup to ask question"
+How to display all question in you home feeds?
+In user profile page. Only display question ask by this user.
 
-  <p>Welcome <%= current_user.email %></p>
-  <a href="/logout">Logout</a>
-  <a href="/users/<%= current_user.id %>">My profile</a>
-  <% else %>
-  <a href="/signup">Sign up</a>
-  <a href="/login">Log in</a> -->
-<!-- <% end %> -->
+
+2) Old table
+add username in signup form
+signin still via user email

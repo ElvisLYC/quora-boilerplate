@@ -1,1 +1,16 @@
-<h2>Profile of <%= @user.email %> </h2>
+  <% if logged_in? && any_question? %>
+
+
+  <form method="post" action="/update_post">
+    <input type=submit value="Update Post">
+  </form>
+
+  <form method="post" action="/delete_post">
+    <input type=submit value="Delete Post">
+  </form>
+
+  <% else %>
+
+
+
+  <% end %>

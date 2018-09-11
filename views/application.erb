@@ -14,10 +14,13 @@
         <input type=submit value="Home">
     </form>
     <% if logged_in? %>
-      <p>Welcome <%= current_user.email %></p>
-      <form method="post" action="/logout">
-          <input type=submit value="Log Out">
-      </form>
+      <p>Welcome back, Dear <%= current_user.name %></p>
+        <form method="post" action="/question">
+          <input type=text placeholder="Your question" name="user[question]">
+          <br>
+          <input type=submit value="question">
+        </form>
+
     <% else %>
       <form method="get" action="/form/login">
           <input type=submit value="Log In">
@@ -27,17 +30,23 @@
           <input type=submit value="Sign Up Now!">
       </form>
     <% end %>
-<!--
-    <% if logged_in? %>
-      <p>Welcome <%= current_user.email %></p>
-      <a href="/logout">Log out</a>
-      <a href="/helpers/session/<%= current_user.id %>">My profile</a>
-    <% else %>
-      <a href="/form/signup">Sign up</a>
-      <a href="/form/login">Log in</a>
-    <% end %> -->
+
+    <% if any_question? %>
+      <p>Your current question:  <%= current_question.question %></p>
+      <% elsif !logged_in? %>
+      <p>Please logged in to view your profile!</p>
+      <% else %>
+      <p>You don't have any question yet!</p>
+
+    <% end %>
 
     <%= yield %>
 
-
+    <% if logged_in? %>
+      <form method="post" action="/logout">
+        <input type=submit value="Log Out">
+      </form>
+      <% else %>
+      <p>Click the login/signup button</p>
+    <% end %>
 </html>
