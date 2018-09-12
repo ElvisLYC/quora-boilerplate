@@ -1,0 +1,12 @@
+<h1>did you see any question</h1>
+<h2><%= Question.find(params[:id]).question %></h2>
+
+
+<form method="post" action="/update_status/<%= params[:id] %>">
+  <input type=text value= "Your new update here!" name="user[update]">
+  <input type=submit value="Confirm Update!">
+</form>
+
+<form method="post" action="/delete_post/<%= params[:id] %>">
+  <input type=submit value="Delete Post">
+</form>

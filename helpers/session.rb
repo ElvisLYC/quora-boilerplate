@@ -5,7 +5,7 @@ helpers do
 
   def current_question
 
-    @current_question ||= Question.find_by(user_id: session[:user_id])
+    @current_question ||= Question.all.where(user_id: session[:user_id]).last
     # questions = Question.where(user_id: session[:user_id])
     # while i <= question.length do
     #   @current_question ||= questions[x].question
@@ -15,8 +15,8 @@ helpers do
     # @current_question.each do |p|
     #   puts @current_question[p]
     # end
-
   end
+
   #Return trues if current_user exists, false otherwise
   def logged_in?
     !current_user.nil?

@@ -1,5 +1,14 @@
-<h1>Quora Clone</h1>
+
 <!-- form as below -->
+
+<h2>All Questions</h2>
+
+<% @all_question.each_with_index do |question, index| %>
+<a href="/questions/<%= question.id %> "><%= "#{index+1}.#{question.question} [ -#{question.name}]"%> <br></a><br>
+<% end %>
+
+
+
 
 <h2>Top Questions</h2>
 

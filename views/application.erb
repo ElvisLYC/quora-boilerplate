@@ -9,16 +9,19 @@
     <link rel="stylesheet" type="text/css" href="/css/application.css">
   </head>
   <body>
-
+    <h1>Quora Clone</h1>
     <form method="get" action="/">
         <input type=submit value="Home">
     </form>
+
+    <a href='/users/<%= current_user.id %>'> Your Profile </a>
+
     <% if logged_in? %>
-      <p>Welcome back, Dear <%= current_user.name %></p>
+      <p>Good day <%= current_user.name %>!</p>
         <form method="post" action="/question">
           <input type=text placeholder="Your question" name="user[question]">
           <br>
-          <input type=submit value="question">
+          <input type=submit value="Submit Question">
         </form>
 
     <% else %>
@@ -31,22 +34,11 @@
       </form>
     <% end %>
 
-    <% if any_question? %>
-      <p>Your current question:  <%= current_question.question %></p>
-      <% elsif !logged_in? %>
-      <p>Please logged in to view your profile!</p>
-      <% else %>
-      <p>You don't have any question yet!</p>
 
-    <% end %>
 
     <%= yield %>
 
-    <% if logged_in? %>
-      <form method="post" action="/logout">
-        <input type=submit value="Log Out">
-      </form>
-      <% else %>
-      <p>Click the login/signup button</p>
-    <% end %>
+    <form method="post" action="/logout">
+      <input type=submit value="Log Out">
+    </form>
 </html>

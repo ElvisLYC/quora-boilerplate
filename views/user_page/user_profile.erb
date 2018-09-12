@@ -1,16 +1,27 @@
-  <% if logged_in? && any_question? %>
+<% if any_question? %>
+<br>
+  <h2><strong>Your latest question</strong></h2>
+  <h3><%= current_question.question %> </h3>
+  <h4> - posted on <em> <%= current_question.updated_at %></em>  </h4>
 
 
-  <form method="post" action="/update_post">
-    <input type=submit value="Update Post">
-  </form>
-
-  <form method="post" action="/delete_post">
-    <input type=submit value="Delete Post">
-  </form>
-
+  <% elsif !logged_in? %>
+  <p>Please log in to view your profile!</p>
   <% else %>
+  <p>You don't have any question yet!</p>
+
+<% end %>
 
 
 
+<% if logged_in? %>
+<h2>All your questions </h2>
+
+  <% @list.each_with_index do |question, index| %>
+  <a href="/questions/<%= question.id %> "><%= "#{index+1}.#{question.question}"%> <br></a><br>
+
+  <!-- <p><%= question.id %># <%= question.question %> >Read More</p> -->
   <% end %>
+  <% else %>
+  <p>Click the login/signup button</p>
+<% end %>
