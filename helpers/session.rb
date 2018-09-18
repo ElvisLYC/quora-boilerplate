@@ -4,17 +4,11 @@ helpers do
   end
 
   def current_question
-
     @current_question ||= Question.all.where(user_id: session[:user_id]).last
-    # questions = Question.where(user_id: session[:user_id])
-    # while i <= question.length do
-    #   @current_question ||= questions[x].question
-    # end
-    # # @current_question = Question.select("question").(user_id: session[:user_id])
-    # p < @current_question.length - 1
-    # @current_question.each do |p|
-    #   puts @current_question[p]
-    # end
+  end
+
+  def current_answer
+    @current_answer ||= Answer.find_by_user_id(session[:user_id])#this occur if @current-user is nil
   end
 
   #Return trues if current_user exists, false otherwise
@@ -24,6 +18,10 @@ helpers do
 
   def any_question?
     !current_question.nil?
+  end
+
+  def any_answer?
+    !current_answer.nil?
   end
   #a convenient method to set the session to given user;s # id
   def sign_in(user)

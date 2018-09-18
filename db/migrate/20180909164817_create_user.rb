@@ -9,12 +9,8 @@ class CreateUser < ActiveRecord::Migration[5.0]
     end
 
     create_table :questions do |t|
-      t.belongs_to :user, :foreign_key => :user_id
-      t.integer :user_id
-      t.string :name
-      t.string :email
       t.string :question
-      t.datetime :published_at
+      t.belongs_to :user, index: true
       t.timestamps
     end
   end

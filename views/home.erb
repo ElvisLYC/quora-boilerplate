@@ -1,22 +1,39 @@
 
 <!-- form as below -->
+<h2>Ask a new question</h2>
+
+  <form method="post" action="/question">
+    <input type=text placeholder="Your question" name="user[question]">
+    <br>
+    <input type=submit value="Submit Question">
+  </form>
+<br>
 
 <h2>All Questions</h2>
 
 <% @all_question.each_with_index do |question, index| %>
-<a href="/questions/<%= question.id %> "><%= "#{index+1}.#{question.question} [ -#{question.name}]"%> <br></a><br>
+<a href="/questions/<%= question.id %> "><%= "#{index+1}.#{question.question} --by #{@all_user.find(question.user_id).name} "%> <br></a><br>
+<% end %>
+
+<h2>All Answers</h2>
+
+
+<% @all_answer.each_with_index do |answer, index| %>
+    <% if @all_question.exists?(answer.question_id) == true %>
+    <!-- if question exist -->
+    <!-- print all the answer of this questions -->
+    <a href="/questions/<%= answer.question_id %>/answers/<%=answer.id%>"><%= "#{answer.answer} --by #{@all_user.find(answer.user_id).name}"%> <br></a><br>
+    <% else %>
+
+    <% end %>
 <% end %>
 
 
-
-
 <h2>Top Questions</h2>
-
-
-
 <hr/>
 
 <h2>Top Answers</h2>
+
 
 <!-- Deleted form -->
 <!-- <a href="form/signup">Signup Now!</a> -->

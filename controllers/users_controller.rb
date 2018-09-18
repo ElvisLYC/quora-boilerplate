@@ -1,8 +1,14 @@
 get '/' do
-  @list = Question.all.where(user_id: current_user.id)
-  @all_question = Question.all
-  erb :"home"
-
+  if logged_in?
+    @list = Question.all.where(user_id: current_user.id)
+    @all_question = Question.all
+    @all_answer = Answer.all
+    @all_user = User.all
+    
+    erb :"home"
+  else
+    redirect '/form/login'
+  end
 end
 
 get '/form/signup' do
@@ -54,13 +60,15 @@ end
 get '/users/:id' do
   p params
   # params = {id:10}
-  @user = User.find_by(id: params[:id])
-  @question = Question.find_by(user_id: params[:id])
-  @list = Question.all.where(user_id: params[:id])
+  # @user = User.find_by(id: params[:id])
+  # @question = Question.find_by(user_id: params[:id])
+  # @list = Question.all.where(user_id: params[:id])
   # @question_to_update = Question.all.where(user_id: session[:user_id]).last
   # @question = Question.find(email: params[:user][:email])
   #Story 3 - Profile Page
-  if @user
+  user = User.find_by(id: session[:user_id])
+  session[:user_id] = user.id
+  if current_user.id == user.id
     erb :"user_page/user_profile"
   else
     redirect '/404'

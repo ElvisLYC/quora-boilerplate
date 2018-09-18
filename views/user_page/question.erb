@@ -1,12 +1,38 @@
-<h1>did you see any question</h1>
-<h2><%= Question.find(params[:id]).question %></h2>
+<% if any_question? || logged_in? %>
+  <h2><%= Question.find(params[:id]).question %></h2> <br>
+  <!-- update here -->
+  <div class="answer-update-container">
+    <form method="post" action="/update_status/<%= params[:id] %>">
+      <input class="update-placeholder"type=text placeholder="Edit your post!" name="user[update]">
+      <input class= "answer-button" type=submit value="Confirm Update!">
+    </form>
+    <!-- answer here -->
+    <form method="post" action="/questions/<%= @question.id %>/answers">
+      <input class="answer-placeholder" type=text placeholder="Post your answer" name="answer[answer]">
+      <input class= "update-button" type=submit value="Submit your answer">
+    </form>
+  </div>
 
 
-<form method="post" action="/update_status/<%= params[:id] %>">
-  <input type=text value= "Your new update here!" name="user[update]">
-  <input type=submit value="Confirm Update!">
-</form>
+  <p>Replies to this post:-</p>
+  <!-- display all the answer of current question! -->
+    <% @question_answer.each_with_index do |answer, index| %>
+    <div class="vote_option">
+      <a href="/questions/<%= answer.question_id %>/answers/<%=answer.id%>"><%= "#{@user.find(answer.user_id).name}:#{answer.answer}"%></a><br>
+      <form class="vote" method="post" action="/vote_answer/<%= answer.id%>">
+        <button id="vote-button" value= "Vote Answer" name= "user[user_vote]">Vote: <%= answer.votes.count %> </button>
+      </form>
+      <form  class="vote" method="post" action="/remove_votes/<%= answer.id%>">
+      <input  type=submit value= "Remove Votes" >
+      </form>
+  </div>
+    <% end %>
 
-<form method="post" action="/delete_post/<%= params[:id] %>">
-  <input type=submit value="Delete Post">
-</form>
+  <form method="post" action="/delete_post/<%= params[:id] %>">
+    <input type=submit value="Delete Post">
+  </form>
+
+
+<% else %>
+  <a href="/users/<%= current_user.id %>">Go back to your profile</a>
+<% end %>

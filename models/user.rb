@@ -6,6 +6,11 @@ class User < ActiveRecord::Base
   validates :email, :format => { :with => /\w+[@]\w+[.]\w{1}\w+/}, uniqueness: true
   validates :name, :format => { :with => /\w+[^ ]/}, uniqueness: true
   has_secure_password
+  has_many :questions
+  has_many :answers
+  has_many :votes
+
+
   # has_many :Question
 #implement association here
 end

@@ -1,0 +1,27 @@
+<h1>Answer for this question</h1>
+<% if any_question? || logged_in?  %>
+  <h2>Question: <%= Question.find(params[:id]).question %></h2> <br>
+  <!-- update here -->
+  <% if any_answer?%>
+    <h2>Answer:   <%= @answer.answer %></h2>
+    <p>[x] votes on this answer</p>
+  <% else %>
+
+  <% end %>
+<form action="/questions/<%= @answer.question_id %>/answers/<%=@answer.id%>/vote" method="post">
+  <input type=submit value= "Vote Answer" name= "user[user_vote]">
+</form>
+
+<form method="post" action="/update_answer/<%= params[:answer_id] %>">
+  <input type=text placeholder="Edit your answer!" name="user[answer_update]">
+  <input type=submit value="Confirm Update!">
+</form>
+
+<form method="post" action="/delete_answer/<%= params[:answer_id] %>">
+  <input type=submit value="Delete Answer">
+</form>
+
+
+<% else %>
+  <a href="/users/<%= current_user.id %>">Go back to your profile</a>
+<% end %>
