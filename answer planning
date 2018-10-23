@@ -1,0 +1,18 @@
+Answer a question
+  -new table > create table > db migrate
+  -create a form that will take in the answer updated_at
+  -create update button for user to update their answer
+Delete their answer
+  -only the answerer can delete their question
+  -create delete form > post delete or something
+  -once delete go back to that question page
+Update their answer
+  - only the answerer can update their answer
+  -once update go back to the question Page
+
+View all Answers posted by themselves on their profile page
+  match question answer by answerer and post it on their site
+
+  Model - what kind of associations or validations should answers have?
+Migrations - what columns, foreign_keys should the answers table have?
+Routes - how should you design your routes?

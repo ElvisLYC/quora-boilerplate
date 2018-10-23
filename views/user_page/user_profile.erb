@@ -1,0 +1,25 @@
+<% if any_question? %>
+<br>
+  <h3>Your latest question</h3>
+  <h3><%= current_question.question %> </h3>
+  <p> - posted on <em> <%= current_question.updated_at %> </em>  </p>
+  <% elsif !logged_in? %>
+  <p>Please log in to view your profile!</p>
+  <% else %>
+  <p>You don't have any question yet! Go to home to submit a question!</p>
+
+<% end %>
+
+
+
+<% if logged_in? && any_question? %>
+<h3>All your questions </h3>
+  <% @list = Question.all.where(user_id: current_user.id) %>
+  <% @list.each_with_index do |question, index| %>
+  <a href="/questions/<%= question.id %> "><%= "#{index+1}.#{question.question}"%> <br></a><br>
+  <!-- <p><%= question.id %># <%= question.question %> >Read More</p> -->
+  <% end %>
+  <br>
+  <% else %>
+  <p>Click the login/signup button</p>
+<% end %>

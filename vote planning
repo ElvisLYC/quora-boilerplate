@@ -1,0 +1,15 @@
+Model - what kind of associations or validations do you need?
+
+-Done
+-what about no repeat?
+
+Migrations - what columns, foreign_keys do you need?
+-Done
+
+Routes - how should you design your routes?
+-Put it in  questions/:id
+
+User flow - how does the user go about voting? where should the vote button be located?
+-locate in the question/:id
+-only can vote when in the question Page
+-only can vote one time per user
